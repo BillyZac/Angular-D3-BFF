@@ -1,47 +1,51 @@
-// This draws once sucessfully, but will not redraw automatically.
-// For that, need to $scope.watch the data and re-render.
-// See 'angular-sparkline' for an example.
+// Draws a circle with radius determined by the circleSize model
 
+// Register the circle directive on the module
 angular.module('app')
 .directive('circle', circle)
 
+// <circle> DEFINITION
 function circle() {
   return {
-    restrict: 'E',
-    // replace: true,
+    restrict: 'E', // It will be used as an element, i.e. <circle>
     template: '<div class="circle"></div>',
-    scope: {
-      circleSize: '=',
-      data: '='
-    },
-    link: function($scope, $element, $attr) {
-      // console.log($scope.data);
-      console.log($scope.circleSize);
-      // The element is just big enough to fit the circle
-      var width =  $scope.circleSize * 2
-      var height = $scope.circleSize * 2
-
-      // We select the element of this directive
-      // and append the svg, which will contain
-      // the circle
-      var element =
-        d3.select($element[0])
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height)
-
-      // Append the circle to the svg
-      // Center it
-      // Set the radius to equal whatever was indicated
-      // on the circle-size attribute,
-      // in this case circle-size="circleSize"
-      // Note the dash case vs camel case. Angular normalization at work? Yikes!
-      element.append("circle")
-        .attr({
-          cx: width / 2,
-          cy: height / 2,
-          r: $scope.circleSize
-        })
-    }
+    scope: { circleSize: '=' }, // We're interested only in the circle-size attribute.
+    link: link
   }
+}
+
+// <circle> IMPLEMENTATION
+function link($scope, $element, $attr) {
+  // Set the size of the element
+  var width = 400
+  var height = 400
+
+  // Create an svg
+  // Select the element associated with this directive and append the svg
+  var element =
+    d3.select($element[0])
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+
+  // Append the circle to the svg
+  element.append("circle")
+    .attr({
+      cx: width / 2,
+      cy: height / 2,
+      r: $scope.circleSize / 2,
+      class: 'circle-shape'
+    })
+
+  // Whenever circleSize changes, update the circle's radius
+  update($scope)
+}
+
+function update($scope) {
+  $scope.$watch('circleSize', function(newVal, oldVal) {
+    if(newVal) {
+      d3.select('.circle-shape')
+        .attr({ r: $scope.circleSize / 2 })
+    }
+  })
 }

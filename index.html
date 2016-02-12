@@ -12,12 +12,9 @@
       <h2>A bar chart showing data defined on the controller</h2>
       <chart data="data"></chart>
       <hr>
-      <h2>A circle that (hopefully one day) is updated by the value in the input field</h2>
-      <p>
-        I want this input field to update the circle size, but it doesn't yet.
-      </p>
-      <input ng-model="circleSize">
-      <p>Circle size: {{circleSize}}</p>
+      <h2>A circle that is updated by the value in the input field</h2>
+      <label for="circleSize">Circle size: </label>
+      <input name="circleSize" ng-model="circleSize">
       <circle circle-size="circleSize"></circle>
     </div>
 
