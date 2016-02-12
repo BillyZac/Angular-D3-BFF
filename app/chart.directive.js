@@ -2,8 +2,6 @@ angular.module('app')
 .directive('chart', chart)
 
 function chart() {
-  // var dataset = [5, 10, 15, 20, 25, 17, 3, 46]
-
   return {
     restrict: 'E',
     replace: true,
