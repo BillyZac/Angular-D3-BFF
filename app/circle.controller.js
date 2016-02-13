@@ -1,8 +1,9 @@
 angular.module('app')
 .controller('CircleController', CircleController)
 
-function CircleController($scope) {
+function CircleController() {
   var vm = this
+  
   //initial value
   vm.size = 50
 }
