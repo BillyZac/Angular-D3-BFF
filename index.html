@@ -8,17 +8,20 @@
     <div ng-controller="MainController">
       <h2>A bar chart showing data defined on the controller</h2>
       <chart data="chartData"></chart>
-      <hr>
+    </div>
+    <hr>
+    <div ng-controller="CircleController as circle">
       <h2>A circle that is updated by the value in the input field</h2>
       <label for="circleSize">Circle size: </label>
-      <input name="circleSize" ng-model="circleSize">
-      <circle circle-size="circleSize"></circle>
+      <input name="circleSize" ng-model="circle.size">
+      <circle circle-size="circle.size"></circle>
     </div>
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/d3/d3.js"></script>
     <script src="/app/app.js"></script>
     <script src="/app/main.controller.js"></script>
+    <script src="/app/circle.controller.js"></script>
     <script src="/app/chart.directive.js"></script>
     <script src="/app/circle.directive.js"></script>
 
