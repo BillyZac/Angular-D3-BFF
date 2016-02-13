@@ -9,8 +9,11 @@ function circle() {
   return {
     restrict: 'E', // It will be used as an element, i.e. <circle>
     template: '<div class="circle"></div>',
-    scope: { circleSize: '=' }, // We're interested only in the circle-size attribute.
-    link: link
+    scope: { size: '=' }, // We're interested only in the circle-size attribute.
+    link: link,
+    controller: 'CircleController',
+    controllerAs: 'vm',
+    bindToController: true
   }
 }
 
@@ -33,7 +36,7 @@ function link($scope, $element, $attr) {
     .attr({
       cx: width / 2,
       cy: height / 2,
-      r: $scope.circleSize / 2,
+      r: $scope.vm.size / 2,
       class: 'circle-shape'
     })
 
@@ -42,10 +45,10 @@ function link($scope, $element, $attr) {
 }
 
 function update($scope) {
-  $scope.$watch('circleSize', function(newVal, oldVal) {
+  $scope.$watch('vm.size', function(newVal, oldVal) {
     if(newVal) {
       d3.select('.circle-shape')
-        .attr({ r: $scope.circleSize / 2 })
+        .attr({ r: $scope.vm.size / 2 })
     }
   })
 }
