@@ -18,15 +18,18 @@ function chart() {
           .attr("height", 300)
 
         element.selectAll("rect")
-          .data($scope.data)
+          .data($scope.vm.data)
           .enter()
           .append("rect")
           .attr({
-            x: function(d, i) {return i * 300 / $scope.data.length},
+            x: function(d, i) {return i * 300 / $scope.vm.data.length},
             y: function(d) {return 300 - (d * 4) + 3},
-            width: 300 / $scope.data.length - 5,
+            width: 300 / $scope.vm.data.length - 5,
             height: function(d) {return d * 4}
           })
-    }
+    },
+    controller: 'ChartController',
+    controllerAs: 'vm',
+    bindToController: true
   }
 }
