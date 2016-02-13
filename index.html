@@ -5,9 +5,9 @@
     <title>D3 in an Angular App</title>
   </head>
   <body>
-    <div ng-controller="MainController">
+    <div ng-controller="ChartController as chart">
       <h2>A bar chart showing data defined on the controller</h2>
-      <chart data="chartData"></chart>
+      <chart data="chart.chartData"></chart>
     </div>
     <hr>
     <div ng-controller="CircleController as circle">
@@ -20,7 +20,7 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/d3/d3.js"></script>
     <script src="/app/app.js"></script>
-    <script src="/app/main.controller.js"></script>
+    <script src="/app/chart.controller.js"></script>
     <script src="/app/circle.controller.js"></script>
     <script src="/app/chart.directive.js"></script>
     <script src="/app/circle.directive.js"></script>
